@@ -131,21 +131,21 @@ async def call(message: Message):
     await message.answer_contact(first_name='PraeLegal', last_name='Office', phone_number='+998 95 198 21 12')
 
 
-@dp.message_handler(regexp='⤴️  Вход в офис 🏛|⤴ Ofisga kirish 🏛|⤴ Entering the office 🏛️')
+@dp.message_handler(regexp='⤴ Вход в офис 🏛️|⤴ Ofisga kirish 🏛️|⤴ Entering the office 🏛️')
 async def send_video(message: Message):
    chat_id = message.from_user.id
 
    video_bytes = InputFile(path_or_bytesio='media/0.MP4')
 
-   if message.text == '⤴️  Вход в офис 🏛':
+   if message.text == '⤴ Вход в офис 🏛️':
        await message.answer(' Идет загрузка, подождите 2-3 минуты ')
        await bot.send_video(chat_id=chat_id, video=video_bytes)
        await message.answer('Следуя по видео поднимитесь в офис')
-   elif message.text == '⤴️ Ofisga kirish 🏛️⤴':
+   elif message.text == '⤴ Ofisga kirish 🏛️':
        await message.answer(' Yuklanmoqda, 2-3 daqiqa kutib turing ')
        await bot.send_video(chat_id=chat_id, video=video_bytes)
        await message.answer('Video boyicha ofisga chiqing')
-   elif message.text == '⤴️ Entering the office 🏛️':
+   elif message.text == '⤴ Entering the office 🏛️':
        await message.answer(' Loading in progress, wait 2-3 minute ')
        await bot.send_video(chat_id=chat_id, video=video_bytes)
        await message.answer('Go up to the video following the video')

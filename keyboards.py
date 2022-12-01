@@ -87,7 +87,7 @@ def generate_main_menu(lang):
         [
             KeyboardButton(text='Локация📍'),
             KeyboardButton(text='📲 Социальные сети  🌍 '),
-            KeyboardButton(text='⤴️  Вход в офис 🏛'),
+            KeyboardButton(text='⤴ Вход в офис 🏛️ '),
             KeyboardButton(text=' 🏢 Тур офиса 360’  🧭'),
             KeyboardButton(text='☎ Позвонить 📞'),
             KeyboardButton(text='⚖ Профайл 📚')
