@@ -62,13 +62,13 @@ async def geolocation(message: Message):
 
 
 
-@dp.message_handler(regexp='🏢 Тур офиса 360’  🧭|🏢 Ofisga sayr 360’  🧭|🏢 Office tour 360’ 🧭')
+@dp.message_handler(regexp='🏢 Тур офиса 360’ 🧭|🏢 Ofisga sayr 360’ 🧭|🏢 Office tour 360’ 🧭')
 async def get_to_office(message: Message):
-    if message.text == '🏢 Тур офиса 360’  🧭':
+    if message.text == '🏢 Тур офиса 360’ 🧭':
         await message.answer('https://uzbekistan360.uz/ru/location/praelegal-uzbekistanKfI', reply_markup=generate_main_menu('Russian 🇷🇺'))
-    elif message.text == '🏢 Ofisga sayr 360’  🧭':
+    elif message.text == '🏢 Ofisga sayr 360’ 🧭':
         await message.answer('https://uzbekistan360.uz/ru/location/praelegal-uzbekistanKfI', reply_markup=generate_main_menu('Uzbek 🇺🇿'))
-    elif message.text == '🏢 Office tour 360’  🧭':
+    elif message.text == '🏢 Office tour 360’ 🧭':
         await message.answer('https://uzbekistan360.uz/ru/location/praelegal-uzbekistanKfI', reply_markup=generate_main_menu('English 🇬🇧'))
 
 
