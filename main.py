@@ -62,7 +62,7 @@ async def geolocation(message: Message):
 
 
 
-@dp.message_handler(regexp='🏢 Тур офиса 360’  🧭|🏢 Ofisga sayr 360’  🧭|🏢 Office tour 360’  🧭')
+@dp.message_handler(regexp='🏢 Тур офиса 360’  🧭|🏢 Ofisga sayr 360’  🧭|🏢 Office tour 360’ 🧭')
 async def get_to_office(message: Message):
     if message.text == '🏢 Тур офиса 360’  🧭':
         await message.answer('https://uzbekistan360.uz/ru/location/praelegal-uzbekistanKfI', reply_markup=generate_main_menu('Russian 🇷🇺'))
@@ -135,7 +135,7 @@ async def call(message: Message):
 async def send_video(message: Message):
     chat_id = message.from_user.id
 
-    video_bytes = InputFile(path_or_bytesio='media/0.MP4')
+    video_bytes = InputFile(path_or_bytesio='media/video.mp4')
 
     if message.text == '⤴ Вход в офис 🏛️':
         await message.answer(' Идет загрузка, подождите 2-3 минуты ')
@@ -148,7 +148,7 @@ async def send_video(message: Message):
     elif message.text == '⤴ Entering the office 🏛️':
         await message.answer(' Loading in progress, wait 2-3 minute ')
         await bot.send_video(chat_id=chat_id, video=video_bytes)
-        await message.answer('Go up, the video following the video')
+        await message.answer('Go up to the video following the video')
 
 
 @dp.message_handler(regexp='⚖ Профайл 📚|⚖ Profayl 📚|⚖ Profile 📚')
@@ -170,3 +170,5 @@ async def send_file(message: Message):
 
 
 executor.start_polling(dp)
+
+

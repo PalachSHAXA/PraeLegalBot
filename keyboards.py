@@ -113,7 +113,7 @@ def generate_main_menu(lang):
               KeyboardButton(text='📲  Social media  🌍'),
               KeyboardButton(
                   text='⤴ Entering the office 🏛️'),
-              KeyboardButton(text=' 🏢 Office tour 360’  🧭'),
+              KeyboardButton(text='🏢 Office tour 360’ 🧭'),
               KeyboardButton(text='☎   Call   📞'),
               KeyboardButton(text='⚖ Profile 📚')
 
