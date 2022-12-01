@@ -24,14 +24,14 @@ user_data = {}
 @dp.message_handler(commands=['start'])
 async def command_start(message: Message):
     chat_id = message.from_user.id
-    await bot.send_message(chat_id, 'Выберите язык|Tilni talang|Choose a language', reply_markup=generate_language_menu())
+    await bot.send_message(chat_id, 'Выберите язык|Tilni tanlang|Choose a language', reply_markup=generate_language_menu())
 
 
 @dp.message_handler(regexp='Русский 🇷🇺|Özbekcha 🇺🇿|English 🇬🇧')
 async def set_language(message: Message):
     chat_id = message.from_user.id
     if message.text == 'Русский 🇷🇺':
-        await bot.send_message(chat_id, 'Здравствуйте, вас приветсвует бот PraeLegal Uzbekistan, выберите раздел:', reply_markup=generate_main_menu('Russian 🇷🇺'))
+        await bot.send_message(chat_id, 'Здравствуйте, вас приветствует бот PraeLegal Uzbekistan, выберите раздел:', reply_markup=generate_main_menu('Russian 🇷🇺'))
     elif message.text == 'Özbekcha 🇺🇿':
         await bot.send_message(chat_id, 'As salomu aleykum sizni Praelegal Uzbekistan boti kutib oldi, bo’limlardan birini tanlang:', reply_markup=generate_main_menu('Uzbek 🇺🇿'))
     elif message.text == 'English 🇬🇧':
@@ -75,7 +75,7 @@ async def get_to_office(message: Message):
 @dp.message_handler(regexp='📲 Социальные сети  🌍|📲  Ijtimoiy tarmoqlar  🌍|📲  Social media  🌍')
 async def websites(message: Message):
     if message.text == '📲 Социальные сети  🌍':
-        await message.answer('Здесь вы найдете наши сотть сети на разных платформах', reply_markup=generate_websites_menu('Russian 🇷🇺'))
+        await message.answer('Здесь вы найдете наши социальные сети на разных платформах', reply_markup=generate_websites_menu('Russian 🇷🇺'))
     elif message.text == '📲  Ijtimoiy tarmoqlar  🌍':
         await message.answer('Bu yerda bizning ijtimoiy tarmoqlarimiz ',
                              reply_markup=generate_websites_menu('Uzbek 🇺🇿'))
@@ -89,7 +89,7 @@ async def instagram(message: Message):
     if message.text == 'Instagram 🇷🇺':
         await message.answer('Это нашa страница в инстаграме: https://www.instagram.com/praelegaluz/', reply_markup=generate_main_menu('Russian 🇷🇺'))
     elif message.text == 'Instagram 🇺🇿':
-        await message.answer('Bu bizning instagramdagi akauntimiza: https://www.instagram.com/praelegaluz/',reply_markup=generate_main_menu('Uzbek 🇺🇿'))
+        await message.answer('Bu bizning instagramdagi akauntimiza: https://www.instagram.com/praelegaluz/', reply_markup=generate_main_menu('Uzbek 🇺🇿'))
     elif message.text == 'Instagram 🇬🇧':
         await message.answer('It our page on instagram: https://www.instagram.com/praelegaluz/', reply_markup=generate_main_menu('English 🇬🇧'))
 
