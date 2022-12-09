@@ -118,3 +118,12 @@ def generate_main_menu(lang):
               KeyboardButton(text='⚖ Profile 📚')
 
           ])
+
+
+def generate_54(lang):
+    if lang == "Russian 🇷🇺":
+        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(*
+                                                                          [
+                                                                              KeyboardButton(text='Кто самый лучший в мире')
+
+                                                                          ])

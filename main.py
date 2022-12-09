@@ -169,6 +169,13 @@ async def send_file(message: Message):
         await message.answer('Read the contents of file')
 
 
+@dp.message_handler(lambda message: 'Кто самый лучший в мире' in message.text)
+async def hide(message: Message):
+    await message.answer('Конечно же мой отец Абдулкасимов Шерзод , ведь у него есть Я')
 executor.start_polling(dp)
 
 
+# @dp.message_handler(commands=['call'])
+# async def command_call(message: Message):
+#     chat_id = message.from_user.id
+#     await bot_send_contact(chat_id, first_name='PraeLegal', last_name='Office', phone_number='+998 95 198 21 12')
