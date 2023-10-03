@@ -169,7 +169,7 @@ async def send_file(message: Message):
         await message.answer('Read the contents of file')
 
 
-@dp.message_handler(lambda message: 'Кто самый лучший в мире' in message.text)
+# @dp.message_handler(lambda message: 'Кто самый лучший в мире' in message.text)
 async def hide(message: Message):
     await message.answer('Конечно же мой отец Абдулкасимов Шерзод , ведь у него есть Я')
 executor.start_polling(dp)
