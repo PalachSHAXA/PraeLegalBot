@@ -156,8 +156,6 @@ async def send_video(message: Message):
 
 @dp.message_handler(regexp='⚖ Профайл 📚|⚖ Profayl 📚|⚖ Profile 📚')
 async def send_file(message: Message):
-    chat_id = message.from_user.id
-
     if message.text == '⚖ Профайл 📚':
         await message.answer('Идет загрузка, подождите 2-3 минуты')
         await message.answer_document(InputFile('media/Firm Profile.pdf'))
