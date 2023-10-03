@@ -1,5 +1,8 @@
+from aiogram import utils
+# from utils import executor
 
 from aiogram import Bot, Dispatcher, executor
+# from aiogram import
 import os
 from dotenv import load_dotenv
 from aiogram.types import Message, CallbackQuery, LabeledPrice, InputFile
@@ -169,9 +172,6 @@ async def send_file(message: Message):
         await message.answer('Read the contents of file')
 
 
-# @dp.message_handler(lambda message: 'Кто самый лучший в мире' in message.text)
-async def hide(message: Message):
-    await message.answer('Конечно же мой отец Абдулкасимов Шерзод , ведь у него есть Я')
 executor.start_polling(dp)
 
 
