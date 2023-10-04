@@ -126,7 +126,7 @@ async def website(message: Message):
     elif message.text == 'Website 🇺🇿':
         await message.answer('Bu bizning saytimiz: https://praelegal.uz/', reply_markup=generate_main_menu('Uzbek 🇺🇿'))
     elif message.text == 'Website 🇬🇧':
-        await message.answer('It is out website: https://praelegal.uz/', reply_markup=generate_main_menu('English 🇬🇧'))
+        await message.answer('It is our website: https://praelegal.uz/', reply_markup=generate_main_menu('English 🇬🇧'))
 
 
 @dp.message_handler(regexp='☎ Позвонить 📞|☎ Telefon qilish📞|☎   Call   📞')
