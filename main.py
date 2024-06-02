@@ -47,11 +47,11 @@ async def geolocation(message: Message):
     loc_latitude = str(41.2710255)
     loc_longitude = str(69.2606875)
     geolocator = Nominatim(user_agent="geoapiExercises")
-    location = geolocator.geocode(loc_latitude + "," + loc_longitude)
+    # location = geolocator.geocode(loc_latitude + "," + loc_longitude)
     await bot.send_location(chat_id,
                             41.2710255,
                             69.2606875)
-    await bot.send_message(chat_id, location)
+    # await bot.send_message(chat_id, location)
 
 
 #dp.message_handler(regexp='Пройти регистрацию 📋')
