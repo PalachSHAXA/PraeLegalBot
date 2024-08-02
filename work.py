@@ -1,126 +1,76 @@
+# import sqlite3
+#
+#
+# async def add_user(id, language, name, phone, user_name, telegram_id, city):
+#     async with sqlite3.connect('database.db') as db:
+#         await db.execute('''
+#             INSERT INTO users (id, language, name, phone, user_name, telegram_id, city) VALUES (?, ?, ?, ?, ?, ?, ?)
+#         ''', (id, language, name, phone, user_name, telegram_id, city))
+#         await db.commit()
+#
+#
+# async def get_user(user_id):
+#     async with sqlite3.connect('database.db') as db:
+#         async with db.execute('''
+#             SELECT * FROM users WHERE id=?
+#         ''', (user_id,)) as cursor:
+#             return await cursor.fetchone()
+#
+# async def get_lang(user_id):
+#     async with sqlite3.connect('database.db') as db:
+#         async with db.execute('''
+#             SELECT language FROM users WHERE id=?
+#         ''', (user_id,)) as cursor:
+#             return await cursor.fetchone()
 import sqlite3
 
 
-#ef select_user_lang(chat_id):
-#   database = sqlite3.connect('lawyer.db')
-#   cursor = database.cursor()
-#   cursor.execute('''SELECT language FROM users WHERE telegram_id =?''',
-#                  (chat_id,))
-#   lang = cursor.fetchone()[0]
-#   database.commit()
-#   database.close()
-#   return lang
+def add_user(lang, name, phone, user_name, telegram_id, city):
+    with sqlite3.connect('database.db') as db:
+        cursor = db.cursor()
+        cursor.execute('''
+            INSERT INTO users (language, full_name, phone, user_name, telegram_id, city) 
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (lang, name, phone, user_name, telegram_id, city))
+        db.commit()
+
+def get_user(user_id):
+    with sqlite3.connect('database.db') as db:
+        cursor = db.cursor()
+        cursor.execute('''
+            SELECT * FROM users WHERE telegram_id=?
+        ''', (user_id,))
+        return cursor.fetchone()
 
 
-def set_user_phone(chat_id, phone_number):
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''UPDATE users SET phone = ? WHERE telegram_id = ?''',
-                   (phone_number, chat_id))
-    database.commit()
-    database.close()
+def save_case(user_id, name, phone, city, scammer_name, theft_amount, fraud_method, exchange_name, scam_wallet_address, case_id, serial_number, code_word):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    cursor.execute('''INSERT INTO cases (user_id, name, phone, city, scammer_name, theft_amount, fraud_method, exchange_name, scam_wallet_address, case_id, serial_number, code_word)
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                   (user_id, name, phone, city, scammer_name, theft_amount, fraud_method, exchange_name, scam_wallet_address, case_id, serial_number, code_word))
+
+    conn.commit()
+    conn.close()
 
 
-def set_user_language(chat_id, language):
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''UPDATE users SET language = ? WHERE telegram_id = ?''',
-                   (language, chat_id))
-    database.commit()
-    database.close()
+def get_lang(user_id):
+    with sqlite3.connect('database.db') as db:
+        cursor = db.cursor()
+        cursor.execute('''
+            SELECT language FROM users WHERE telegram_id=?
+        ''', (user_id,))
+        return cursor.fetchone()
 
 
-def first_select_user(chat_id):
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''
-    SELECT * FROM users WHERE telegram_id = ? 
-    ''', (chat_id,))
-    user = cursor.fetchone()
-    database.close()
-    return user
-
-
-def select_user_lang(chat_id):
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''SELECT language FROM users WHERE telegram_id =?''',
-                   (chat_id,))
-    lang = cursor.fetchone()[0]
-    database.commit()
-    database.close()
-    return lang
-
-
-def register_user(chat_id, full_name, phone):
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''
-    INSERT INTO users(chat_id, full_name, phone)
-    VALUES (?,?,?)
-        ''', (chat_id, full_name, phone))
-    database.commit()
-    database.close()
-
-
-def create_carts(chat_id):
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''
-    INSERT INTO carts(users_id) VALUES (
-    (
-           SELECT user_id FROM users WHERE telegram_id = ?
-           )
-           )
-           ''', (chat_id,))
-    database.commit()
-    database.close()
-
-
-def get_products_by_path(path_id):
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''
-    SELECT product_id, product_name FROM products
-    WHERE path_id = ?;
-    ''', (path_id, ))
-    products = cursor.fetchall()
-    database.close()
-    return products
-
-
-def get_categories():
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''
-    SELECT * FROM categories;
-    ''')
-    categories = cursor.fetchall()
-    database.close()
-    return сategories
-
-
-def create_carts(chat_id):
-    database = sqlite3.connect('lawyer.db')
-    cursor = database.cursor()
-    cursor.execute('''
-    INSERT INTO carts(user_id) VALUES (
-    (
-           SELECT user_id FROM users WHERE telegram_id = ?
-           )
-           )
-           ''', (chat_id,))
-    database.commit()
-    database.close()
-
-
-#def get_products_by_path(path_id):
-#    database = sqlite3.connect('lawyer.db')
-#    cursor = database.cursor()
-#    cursor.execute('''
-#    SELECT product_id, product_name FROM products
-#    WHERE path_id = ?;
-#    ''', (path_id, ))
-#    products = cursor.fetchall()
-#    database.close()
-#    return products
+# def save_case(user_id, name, phone, city, scammer_name, theft_amount, fraud_method, exchange_name, scam_wallet_address, case_id):
+#     conn = sqlite3.connect('database.db')
+#     cursor = conn.cursor()
+#
+#     cursor.execute('''INSERT INTO cases (user_id, name, phone, city, scammer_name, theft_amount, fraud_method, exchange_name, scam_wallet_address, case_id)
+#                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+#                    (user_id, name, phone, city, scammer_name, theft_amount, fraud_method, exchange_name, scam_wallet_address, case_id))
+#
+#     conn.commit()
+#     conn.close()

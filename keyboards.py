@@ -1,129 +1,81 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+
+def language_menu():
+    return ReplyKeyboardMarkup(resize_keyboard=True, row_width=3).add(
+        KeyboardButton(text='🇺🇿 O\'zbekcha'),
+        KeyboardButton(text='🇷🇺 Русский'),
+        KeyboardButton(text='🇬🇧 English')
+    )
+
+def main_keyboard(lang):
+    if lang == "ru":
+        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(
+            KeyboardButton(text='❓ Часто задаваемые вопросы'),
+            KeyboardButton(text='📬 Оставить заявку')
+        )
+    elif lang == "uz":
+        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(
+            KeyboardButton(text='❓ Tez-tez so‘raladigan savollar'),
+            KeyboardButton(text='📬 Ariza qoldirish')
+        )
+    else:
+        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(
+            KeyboardButton(text='❓ Frequently Asked Questions'),
+            KeyboardButton(text='📬 Submit Application')
+        )
 
 
-# def generate_register():
-#    markup = ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
-#    btn_register = KeyboardButton(text='Пройти регистрацию 📋')
-#    markup.add(btn_register)
-#    return markup
-#
+def contact_keyboard(lang):
+    if lang == "ru":
+        return ReplyKeyboardMarkup(resize_keyboard=True).add(
+            KeyboardButton(text="Отправить контакт", request_contact=True)
+        )
+    elif lang == "uz":
+        return ReplyKeyboardMarkup(resize_keyboard=True).add(
+            KeyboardButton(text="Kontaktni yuboring", request_contact=True)
+        )
+    else:
+        return ReplyKeyboardMarkup(resize_keyboard=True).add(
+            KeyboardButton(text="Send contact", request_contact=True)
+        )
 
 
-def generate_language_menu():
-    return ReplyKeyboardMarkup(resize_keyboard=True, row_width=3).add(*
-                                                                       [
-                                                                           KeyboardButton(text='Русский 🇷🇺'),
-                                                                           KeyboardButton(text='Özbekcha 🇺🇿'),
-                                                                           KeyboardButton(text='English 🇬🇧')
-                                                                       ])
+def generate_name(name):
+        return ReplyKeyboardMarkup(resize_keyboard=True).add(
+            KeyboardButton(text=f"{name}")
+        )
 
 
-#ef generate_send_contact():
-#   markup = ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
-#   send_contact = KeyboardButton(text='Отправить контакт 👤', request_contact=True)
-#   markup.add(send_contact)
-#   return markup
+def faq_keyboard(lang):
+    if lang == 'ru':
+        buttons = [
 
+            KeyboardButton("1. Сколько времени занимает возврат активов?"),
+            KeyboardButton("2. Возможно ли вернуть потерянные или украденные криптоактивы?"),
+            KeyboardButton("3. Сколько вы взимаете за услуги по возврату активов?"),
+            KeyboardButton("4. Какую информацию вам нужно предоставить для начала процесса возврата?"),
+            KeyboardButton("5. Как вы обеспечиваете безопасность и конфиденциальность моей информации?"),
+            KeyboardButton("6. Какие типы криптоактивов вы можете помочь вернуть?"),
+            KeyboardButton("7. Предоставляете ли вы гарантии на возврат активов?"),
+            KeyboardButton("8. Как я могу начать пользоваться вашими услугами?"),
+            KeyboardButton("9. Что происходит, если мои активы не могут быть возвращены?"),
+            KeyboardButton("10. Можете ли вы помочь вернуть активы, потерянные в результате мошенничества или мошеннических действий?"),
+            KeyboardButton("🔙")
 
-# def generate_main_menu():
-#     markup = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-#     btn_location = KeyboardButton(text='Геолокация📍')
-#     btn_websites = KeyboardButton(text='Социальные сети 📱')
-#     btn_get_office = KeyboardButton(text='Поднятся в офис 🏢')
-#     btn_office = KeyboardButton(text='🏢 Офис 360')
-#     btn_call = KeyboardButton(text='☎ Позвонить 📞')
-#     btn_lang = KeyboardButton(text=' ⚖ О компнании 📑')
-#     markup.add(btn_location, btn_websites, btn_get_office, btn_office, btn_call, btn_lang)
-#     return markup
+        ]
+    else:
+        buttons = [
+            KeyboardButton("1. Kripto aktivlarimni qaytarish qancha vaqtni o`z ichiga oladi?"),
+            KeyboardButton("2. Yo`qolgan yoki o`g`irlangan kripto aktivlarni qaytarish mumkinmi?"),
+            KeyboardButton("3. Kripto aktivlarni qaytarish xizmatlari uchun qancha haq olasiz?"),
+            KeyboardButton("4. Men qaytarish jarayoni boshlanishi uchun qanday ma’lumotlarni taqdim qilishim kerak?"),
+            KeyboardButton("5. Mening ma'lumotlarim xavfsizligi va maxfiyligini qanday ta'minlaysiz?"),
+            KeyboardButton("6. Qanday turdagi kripto aktivlarni tiklashga yordam bera olasiz?"),
+            KeyboardButton("7. Siz aktivlarni qaytarish uchun qandaydir kafolatlar taklif qila olasizmi?"),
+            KeyboardButton("8. Qanday qilib sizning xizmatlaringizdan foydalanishni boshlashim mumkin?"),
+            KeyboardButton("9. Agar aktivlarimni qaytarish imkoniyati bo`lmasa nima bo`ladi?"),
+            KeyboardButton("10. Firibgarlik natijasida yo‘qolgan aktivlarni qayta tiklashga yordam bera olasizmi?"),
+            KeyboardButton("🔙")
+        ]
 
-
-def generate_categories(categories):
-    markup = KeyboardButton(row_width=2)
-    buttons = []
-    for category_id, category_name in categories:
-        btn = KeyboardButton(text=category_name, callback_data=f'category_{category_id}')
-        buttons.append(btn)
-        markup.add(*buttons)
-        return markup
-
-
-def generate_websites_menu(lang):
-    if lang == "Russian 🇷🇺":
-        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(*
-        [
-            KeyboardButton(text='Instagram 🇷🇺'),
-            KeyboardButton(text='Website 🇷🇺'),
-            KeyboardButton(text='Facebook 🇷🇺'),
-            KeyboardButton(text='Linkedin 🇷🇺')
-        ])
-    elif lang == 'Uzbek 🇺🇿':
-        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(*
-          [
-              KeyboardButton(text='Instagram 🇺🇿'),
-              KeyboardButton(text='Website 🇺🇿'),
-              KeyboardButton(text='Facebook 🇺🇿'),
-              KeyboardButton(text='Linkedin 🇺🇿')
-          ])
-    elif lang == 'English 🇬🇧':
-        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(*
-          [
-              KeyboardButton(text='Instagram 🇬🇧'),
-              KeyboardButton(text='Website 🇬🇧'),
-              KeyboardButton(text='Facebook 🇬🇧'),
-              KeyboardButton(text='Linkedin 🇬🇧'),
-          ])
-    markup = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-    btn_instagram = KeyboardButton(text='Instagram')
-    btn_website = KeyboardButton(text='Website')
-    btn_facebook = KeyboardButton(text='Facebook')
-    btn_linkedin = KeyboardButton(text='Linkedin')
-    #btn_back = KeyboardButton(text='🔙')
-    markup.add(btn_instagram, btn_website, btn_facebook, btn_linkedin)
-    return markup
-
-def generate_main_menu(lang):
-    if lang == "Russian 🇷🇺":
-        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(*
-        [
-            KeyboardButton(text='Локация📍'),
-            KeyboardButton(text='📲 Социальные сети  🌍 '),
-            KeyboardButton(text='⤴ Вход в офис 🏛️'),
-            KeyboardButton(text='🏢 Тур офиса 360’ 🧭'),
-            KeyboardButton(text='☎ Позвонить 📞'),
-            KeyboardButton(text='⚖ Профайл 📚')
-        ])
-    elif lang == 'Uzbek 🇺🇿':
-        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(*
-          [
-              KeyboardButton(
-                  text='Geolokatsiya📍'),
-              KeyboardButton(
-                  text='📲  Ijtimoiy tarmoqlar  🌍'),
-              KeyboardButton(text='⤴ Ofisga kirish 🏛️'),
-              KeyboardButton(text='🏢 Ofisga sayr 360’ 🧭'),
-              KeyboardButton(
-                  text='☎ Telefon qilish📞'),
-              KeyboardButton(text='⚖ Profayl 📚')
-          ])
-    elif lang == 'English 🇬🇧':
-        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(*
-          [
-              KeyboardButton(
-                  text='Location📍'),
-              KeyboardButton(text='📲  Social media  🌍'),
-              KeyboardButton(
-                  text='⤴ Entering the office 🏛️'),
-              KeyboardButton(text='🏢 Office tour 360’ 🧭'),
-              KeyboardButton(text='☎   Call   📞'),
-              KeyboardButton(text='⚖ Profile 📚')
-
-          ])
-
-
-def generate_54(lang):
-    if lang == "Russian 🇷🇺":
-        return ReplyKeyboardMarkup(resize_keyboard=True, row_width=2).add(*
-                                                                          [
-                                                                              KeyboardButton(text='Кто самый лучший в мире')
-
-                                                                          ])
+    return ReplyKeyboardMarkup( row_width=1).add(*buttons)
